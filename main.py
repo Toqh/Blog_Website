@@ -14,7 +14,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # Import your forms from the forms.py
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 
+import os
 
+# Access the API key
+key = os.getenv("SECRET_KEY")
 
 '''
 Make sure the required packages are installed: 
@@ -30,9 +33,9 @@ This will install the packages from the requirements.txt for this project.
 '''
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 ckeditor = CKEditor(app)
 Bootstrap5(app)
+app.config['SECRET_KEY'] = key
 
 login_manager = LoginManager()
 login_manager.init_app(app)
